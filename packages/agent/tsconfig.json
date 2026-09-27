@@ -1,0 +1,27 @@
+{
+  // AI4Shader agent package. Same contract as `packages/ir/tsconfig.json` (see
+  // docs/AGENT_CONTRACT.md §2): relative imports carry a `.js` extension because
+  // moduleResolution is nodenext and the sources run unbuilt under Node type stripping.
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["es2022"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+
+    "strict": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Every type-only import must say so: Node's type stripping removes `import type`
+    // and the `type` modifier, but it cannot know that a bare named import was a type.
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+
+    "noEmit": true,
+    "skipLibCheck": true
+  },
+  // `test/**` is included so the provider tests are type-checked too; that requires
+  // @types/node (declared in devDependencies) for `node:test` / `node:assert`.
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}

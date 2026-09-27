@@ -1,0 +1,1078 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_prev",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_prev",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_prev_split",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_mouse",
+          "port": "mouse"
+        },
+        "to": {
+          "node": "n_mouse_xy",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_res",
+          "port": "resolution"
+        },
+        "to": {
+          "node": "n_res_xy",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_mouse_xy",
+          "port": "x"
+        },
+        "to": {
+          "node": "n_px",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_res_xy",
+          "port": "x"
+        },
+        "to": {
+          "node": "n_px",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_mouse_xy",
+          "port": "y"
+        },
+        "to": {
+          "node": "n_py",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_res_xy",
+          "port": "y"
+        },
+        "to": {
+          "node": "n_py",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_px",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_pointer",
+          "port": "x"
+        }
+      },
+      {
+        "from": {
+          "node": "n_py",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_pointer",
+          "port": "y"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_uv_xy",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pointer",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_ptr_xy",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv_xy",
+          "port": "x"
+        },
+        "to": {
+          "node": "n_uv4",
+          "port": "x"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv_xy",
+          "port": "y"
+        },
+        "to": {
+          "node": "n_uv4",
+          "port": "y"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ptr_xy",
+          "port": "x"
+        },
+        "to": {
+          "node": "n_ptr4",
+          "port": "x"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ptr_xy",
+          "port": "y"
+        },
+        "to": {
+          "node": "n_ptr4",
+          "port": "y"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv4",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_dist",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ptr4",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_dist",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_dist",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_dist_x",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_dist_x",
+          "port": "x"
+        },
+        "to": {
+          "node": "n_brush",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_one",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_touch",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_brush",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_touch",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_prev_split",
+          "port": "w"
+        },
+        "to": {
+          "node": "n_clearance",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_touch",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_clearance",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_scene_noise",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_scene_noise",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_scene",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_fog_noise",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_fog_noise",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_fog",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_fog",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_scene_under",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_scene",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_scene_under",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_clearance",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_scene_under",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_scene_under",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_out_rgb",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_clearance",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "w"
+        }
+      },
+      {
+        "from": {
+          "node": "n_out_rgb",
+          "port": "x"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "x"
+        }
+      },
+      {
+        "from": {
+          "node": "n_out_rgb",
+          "port": "y"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "y"
+        }
+      },
+      {
+        "from": {
+          "node": "n_out_rgb",
+          "port": "z"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "z"
+        }
+      },
+      {
+        "from": {
+          "node": "n_out",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_result",
+          "port": "color"
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n_uv",
+        "kind": "uv",
+        "note": "归一化屏幕坐标，原点左下。",
+        "pos": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_res",
+        "kind": "resolution",
+        "note": "像素尺寸：指针位置是像素，要除以它才能和 uv 同量纲。",
+        "pos": {
+          "x": 0,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_mouse",
+        "kind": "mouse",
+        "note": "xy = 当前指针（像素），zw = 按下位置。IR 约定原点左下。",
+        "pos": {
+          "x": 0,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_prev",
+        "inputs": {
+          "uv": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "texture",
+        "note": "读图像通道。在 render.feedback 文档里，这个通道装的是**上一帧自己**，所以这一条线是整个效果的记忆：没有它，擦除只能是一帧的痕迹。",
+        "pos": {
+          "x": 260,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_prev_split",
+        "inputs": {
+          "value": {
+            "node": "n_prev",
+            "port": "color"
+          }
+        },
+        "kind": "split_vec4",
+        "note": "取出 .w —— 那就是上一帧累积下来的「已擦净程度」。",
+        "pos": {
+          "x": 460,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_mouse_xy",
+        "inputs": {
+          "value": {
+            "node": "n_mouse",
+            "port": "mouse"
+          }
+        },
+        "kind": "split_vec4",
+        "note": "vec4 进不了任何标量输入 —— 这正是拆解节点存在的理由。",
+        "pos": {
+          "x": 260,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_res_xy",
+        "inputs": {
+          "value": {
+            "node": "n_res",
+            "port": "resolution"
+          }
+        },
+        "kind": "split_vec2",
+        "pos": {
+          "x": 260,
+          "y": 140
+        }
+      },
+      {
+        "id": "n_px",
+        "inputs": {
+          "a": {
+            "node": "n_mouse_xy",
+            "port": "x"
+          },
+          "b": {
+            "node": "n_res_xy",
+            "port": "x"
+          }
+        },
+        "kind": "math",
+        "note": "op=3 是除法。像素 → uv。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 3
+          }
+        },
+        "pos": {
+          "x": 460,
+          "y": 200
+        }
+      },
+      {
+        "id": "n_py",
+        "inputs": {
+          "a": {
+            "node": "n_mouse_xy",
+            "port": "y"
+          },
+          "b": {
+            "node": "n_res_xy",
+            "port": "y"
+          }
+        },
+        "kind": "math",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 3
+          }
+        },
+        "pos": {
+          "x": 460,
+          "y": 300
+        }
+      },
+      {
+        "id": "n_pointer",
+        "inputs": {
+          "x": {
+            "node": "n_px",
+            "port": "value"
+          },
+          "y": {
+            "node": "n_py",
+            "port": "value"
+          }
+        },
+        "kind": "make_vec2",
+        "pos": {
+          "x": 660,
+          "y": 250
+        }
+      },
+      {
+        "id": "n_uv_xy",
+        "inputs": {
+          "value": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "split_vec2",
+        "note": "make_vec4 收四个标量，所以 vec2 必须先拆开 —— 文档里写清楚了这条规则，这里照着做。",
+        "pos": {
+          "x": 660,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_ptr_xy",
+        "inputs": {
+          "value": {
+            "node": "n_pointer",
+            "port": "value"
+          }
+        },
+        "kind": "split_vec2",
+        "pos": {
+          "x": 660,
+          "y": 140
+        }
+      },
+      {
+        "id": "n_uv4",
+        "inputs": {
+          "x": {
+            "node": "n_uv_xy",
+            "port": "x"
+          },
+          "y": {
+            "node": "n_uv_xy",
+            "port": "y"
+          }
+        },
+        "kind": "make_vec4",
+        "params": {
+          "w": {
+            "kind": "float",
+            "value": 0
+          },
+          "z": {
+            "kind": "float",
+            "value": 0
+          }
+        },
+        "pos": {
+          "x": 860,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_ptr4",
+        "inputs": {
+          "x": {
+            "node": "n_ptr_xy",
+            "port": "x"
+          },
+          "y": {
+            "node": "n_ptr_xy",
+            "port": "y"
+          }
+        },
+        "kind": "make_vec4",
+        "params": {
+          "w": {
+            "kind": "float",
+            "value": 0
+          },
+          "z": {
+            "kind": "float",
+            "value": 0
+          }
+        },
+        "pos": {
+          "x": 860,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_dist",
+        "inputs": {
+          "a": {
+            "node": "n_uv4",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_ptr4",
+            "port": "value"
+          }
+        },
+        "kind": "vec_math",
+        "note": "op=2 是 distance。它读 .xyz 并忽略 w，和 dot 一致 —— 这才是四个分量里 w 的正确用法。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 2
+          }
+        },
+        "pos": {
+          "x": 1060,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_dist_x",
+        "inputs": {
+          "value": {
+            "node": "n_dist",
+            "port": "value"
+          }
+        },
+        "kind": "split_vec4",
+        "note": "distance 把标量广播到四个分量，取任意一个都行。",
+        "pos": {
+          "x": 1260,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_brush",
+        "inputs": {
+          "value": {
+            "node": "n_dist_x",
+            "port": "x"
+          }
+        },
+        "kind": "smoothstep",
+        "note": "距离越远值越大（1 = 完全没碰到）。edge0 < edge1 是必须的。",
+        "params": {
+          "edge0": {
+            "group": "擦除",
+            "kind": "param",
+            "label": "笔刷半径",
+            "max": 0.4,
+            "min": 0.005,
+            "name": "u_brush",
+            "step": 0.005,
+            "type": "float",
+            "value": 0.06
+          },
+          "edge1": {
+            "group": "擦除",
+            "kind": "param",
+            "label": "笔刷边缘",
+            "max": 0.6,
+            "min": 0.01,
+            "name": "u_brushSoft",
+            "step": 0.005,
+            "type": "float",
+            "value": 0.14
+          }
+        },
+        "pos": {
+          "x": 1460,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_one",
+        "kind": "const_float",
+        "params": {
+          "value": {
+            "kind": "float",
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 1460,
+          "y": 200
+        }
+      },
+      {
+        "id": "n_touch",
+        "inputs": {
+          "a": {
+            "node": "n_one",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_brush",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "note": "op=1 是减法：1 - smoothstep(...) → 笔刷中心为 1，远处为 0。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 1660,
+          "y": 160
+        }
+      },
+      {
+        "id": "n_clearance",
+        "inputs": {
+          "a": {
+            "node": "n_prev_split",
+            "port": "w"
+          },
+          "b": {
+            "node": "n_touch",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "note": "op=6 是 max —— **整个效果的机制**。取最大值意味着擦净程度只增不减：手指离开后痕迹留在那里，而不是跟着手指走、随手离开而复原。换成加法会过曝，换成 mix 会让整幅画慢慢变透。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 6
+          }
+        },
+        "pos": {
+          "x": 1860,
+          "y": 160
+        }
+      },
+      {
+        "id": "n_scene_noise",
+        "inputs": {
+          "uv": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "fbm",
+        "params": {
+          "gain": {
+            "kind": "float",
+            "value": 0.5
+          },
+          "lacunarity": {
+            "kind": "float",
+            "value": 2
+          },
+          "octaves": {
+            "kind": "float",
+            "value": 4
+          },
+          "ridged": {
+            "kind": "float",
+            "value": 0.3
+          },
+          "scale": {
+            "group": "背景",
+            "kind": "param",
+            "label": "背景纹理密度",
+            "max": 16,
+            "min": 1,
+            "name": "u_sceneScale",
+            "step": 0.5,
+            "type": "float",
+            "value": 4
+          }
+        },
+        "pos": {
+          "x": 260,
+          "y": 420
+        }
+      },
+      {
+        "id": "n_scene",
+        "inputs": {
+          "t": {
+            "node": "n_scene_noise",
+            "port": "value"
+          }
+        },
+        "kind": "color_ramp",
+        "note": "窗外的东西：冷色、低对比，因为它是被雾挡住的背景，不该抢戏。",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.03,
+              0.05,
+              0.08,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.12,
+              0.2,
+              0.3,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.5,
+              0.6,
+              0.7,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 460,
+          "y": 420
+        }
+      },
+      {
+        "id": "n_fog_noise",
+        "inputs": {
+          "uv": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "fbm",
+        "note": "ridged 0.45 让雾看起来是细密水珠而不是一团平滑的灰。",
+        "params": {
+          "gain": {
+            "kind": "float",
+            "value": 0.55
+          },
+          "lacunarity": {
+            "kind": "float",
+            "value": 2.1
+          },
+          "octaves": {
+            "kind": "float",
+            "value": 5
+          },
+          "ridged": {
+            "kind": "float",
+            "value": 0.45
+          },
+          "scale": {
+            "group": "雾气",
+            "kind": "param",
+            "label": "雾气密度",
+            "max": 30,
+            "min": 1,
+            "name": "u_fogScale",
+            "step": 0.5,
+            "type": "float",
+            "value": 9
+          }
+        },
+        "pos": {
+          "x": 660,
+          "y": 520
+        }
+      },
+      {
+        "id": "n_fog",
+        "inputs": {
+          "t": {
+            "node": "n_fog_noise",
+            "port": "value"
+          }
+        },
+        "kind": "color_ramp",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.55,
+              0.6,
+              0.65,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.86,
+              0.9,
+              0.94,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.98,
+              0.99,
+              1,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 860,
+          "y": 520
+        }
+      },
+      {
+        "id": "n_scene_under",
+        "inputs": {
+          "a": {
+            "node": "n_fog",
+            "port": "color"
+          },
+          "b": {
+            "node": "n_scene",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_clearance",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "note": "t = 已擦净程度：0 处是雾，1 处是完全露出的背景。",
+        "pos": {
+          "x": 660,
+          "y": 320
+        }
+      },
+      {
+        "id": "n_out_rgb",
+        "inputs": {
+          "value": {
+            "node": "n_scene_under",
+            "port": "value"
+          }
+        },
+        "kind": "split_vec4",
+        "pos": {
+          "x": 860,
+          "y": 320
+        }
+      },
+      {
+        "id": "n_out",
+        "inputs": {
+          "w": {
+            "node": "n_clearance",
+            "port": "value"
+          },
+          "x": {
+            "node": "n_out_rgb",
+            "port": "x"
+          },
+          "y": {
+            "node": "n_out_rgb",
+            "port": "y"
+          },
+          "z": {
+            "node": "n_out_rgb",
+            "port": "z"
+          }
+        },
+        "kind": "make_vec4",
+        "note": "把状态写回 alpha —— 下一帧的 n_prev_split.w 读的就是这个值。",
+        "pos": {
+          "x": 1060,
+          "y": 320
+        }
+      },
+      {
+        "id": "n_result",
+        "inputs": {
+          "color": {
+            "node": "n_out",
+            "port": "value"
+          }
+        },
+        "kind": "output",
+        "pos": {
+          "x": 1260,
+          "y": 320
+        }
+      }
+    ]
+  },
+  "hash": "9d26aa7438ee1513",
+  "id": "fog-wipe",
+  "irVersion": "1.0.0",
+  "provenance": {
+    "model": "hand-authored",
+    "steps": [
+      {
+        "actor": "human",
+        "at": "2024-01-03T00:00:00.000Z",
+        "summary": "手写参考示例：用 render.feedback 把「擦开的水雾」累积在 alpha 通道里"
+      }
+    ]
+  },
+  "render": {
+    "feedback": true,
+    "maxIterations": 6,
+    "qualityTier": "medium",
+    "referenceGpu": "集显 / 移动端 GPU",
+    "resolution": [
+      512,
+      512
+    ],
+    "targetFps": 60,
+    "transparent": false
+  },
+  "spec": {
+    "antiFeatures": [
+      "擦除痕迹会随时间淡出",
+      "笔刷边缘是硬边方块"
+    ],
+    "category": "interactive-feedback",
+    "features": [
+      "画面初始被一层细密水雾覆盖",
+      "指针划过处的水雾被擦开，露出后面的景物",
+      "擦开的地方不会自己恢复，越擦越透",
+      "雾气有细密的纹理，不是均匀的灰"
+    ],
+    "intent": "蒙着水雾的玻璃：手指划过的地方被擦干净，并且一直保持干净，露出后面的景物",
+    "outOfScope": [
+      "不含水滴沿玻璃流下的物理模拟 —— 那需要重力方向的累积场，是另一个效果",
+      "不含指纹/油污等真实材质，水雾是程序化噪声"
+    ],
+    "tags": [
+      "水雾",
+      "交互",
+      "反馈",
+      "擦除"
+    ]
+  },
+  "stage": "fragment",
+  "targetNotes": {
+    "glsl": "readback 语义：iChannel0 必须是「上一帧」。工作台的平面预览已经这么绑（ping-pong + 离屏 FBO）；3D 材质预览只提供白色占位。",
+    "hlsl": "宿主需要两个 RT 轮换：本帧渲染到 B 的同时把 A 作为 iChannel0 采样，然后交换。",
+    "msl": "同上；非 macOS 环境无法本地编译验证。",
+    "shaderlab": "需要脚本层维护两张 RenderTexture 并每帧交换 _Channel0 —— Unity 不会自动做这件事。",
+    "ue": "材质图里把上一帧的 RenderTarget 接到通道引脚，并用 SceneCapture 每帧回写；UE 没有内建的反馈缓冲。",
+    "wgsl": "同上；WebGPU 后端需要两个 texture + 两个 bind group 交替。工作台目前未实现。"
+  },
+  "targets": [
+    "glsl",
+    "wgsl",
+    "hlsl",
+    "msl",
+    "shaderlab",
+    "ue"
+  ],
+  "title": "水雾玻璃（可擦）"
+}

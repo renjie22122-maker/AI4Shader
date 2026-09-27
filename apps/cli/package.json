@@ -1,0 +1,30 @@
+{
+  "name": "@ai4shader/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ai4shader — validate, emit, patch params and sweep AI4Shader IR documents",
+  "license": "MIT",
+  "bin": {
+    "ai4shader": "./src/cli.ts"
+  },
+  "exports": {
+    ".": "./src/cli.ts"
+  },
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "test": "node --test --test-isolation=none --experimental-strip-types --import ./.node/register-hooks.mjs test/cli.test.ts",
+    "test:isolated": "node --test --experimental-strip-types --import ./.node/register-hooks.mjs test/cli.test.ts",
+    "cli": "node --experimental-strip-types --import ./.node/register-hooks.mjs src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@ai4shader/ir": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

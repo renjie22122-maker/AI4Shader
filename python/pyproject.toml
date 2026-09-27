@@ -1,0 +1,53 @@
+[build-system]
+# Metadata only. There is deliberately NO install step and no build backend:
+# `python -m ai4shader` and `python -m pytest tests/` both run straight from a
+# checkout, and everything the package needs (numpy) is already present.
+# A `[build-system]` table without `build-backend` keeps `pip install .` from
+# silently doing something surprising.
+requires = []
+
+[project]
+name = "ai4shader"
+version = "0.1.0"
+description = "AI4Shader offline layer: real compiler validation, image similarity scoring, and failure attribution (DESIGN.md 4.3)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+# numpy is the only hard requirement: every image crossing a module boundary is
+# an np.ndarray. Everything else is optional and probed at runtime.
+dependencies = ["numpy>=1.20"]
+
+[project.optional-dependencies]
+# Pillow adds JPEG/BMP/TIFF/WebP and an alternative PNG path. Without it, PNG and
+# PPM still work through the pure-stdlib codecs in `ai4shader.imageio`.
+images = ["Pillow>=9"]
+
+# The real learned metrics. These need CACHED WEIGHTS as well as the packages:
+#   lpips  -> <site-packages>/lpips/weights/v0.1/alex.pth
+#          -> $TORCH_HOME/hub/checkpoints/alexnet-owt-7be5be79.pth
+#   clip   -> ~/.cache/clip/ViT-B-32.pt  (sha256 40d36571...a950af)
+# Nothing here downloads anything; `score.capabilities()` reports what it found
+# and `lpips`/`clip_similarity` return None when the weights are absent.
+metrics = ["torch>=2.0", "torchvision>=0.15", "lpips>=0.1", "clip-anytorch"]
+
+# "all the compilers" is not expressible here: glslangValidator and dxc are SDK
+# binaries, and naga ships on crates.io. See `python -m ai4shader compilers`.
+
+[project.scripts]
+# Convenience only. Works after `pip install -e .`; not required, because
+# `python -m ai4shader` needs no installation at all.
+ai4shader-py = "ai4shader.cli:main"
+
+[tool.pytest.ini_options]
+# Root-level conftest.py puts this directory on sys.path so `import ai4shader`
+# works from a bare checkout.
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = [
+    # lpips constructs torchvision's alexnet with the deprecated `pretrained=True`
+    # argument. That warning is about lpips's code, and the loader already
+    # suppresses it at the source; this keeps it out of the summary too.
+    "ignore:.*pretrained.*:UserWarning",
+    "ignore:.*weights.*deprecated.*:UserWarning",
+]

@@ -1,0 +1,26 @@
+{
+  "name": "@ai4shader/ir",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shader IR (SIR): types, restricted-GLSL rewriter, emitter core and the six target emitters.",
+  "exports": {
+    ".": "./dist/index.js",
+    "./catalog": "./dist/catalog/index.js",
+    "./targets": "./dist/targets/index.js",
+    "./patcher": "./dist/patcher.js",
+    "./types": "./dist/types.js",
+    "./glslSubset": "./dist/glslSubset.js"
+  },
+  "scripts": {
+    "build": "node --experimental-strip-types --experimental-transform-types ../../scripts/project-ts.ts",
+    "test": "node --test --test-isolation=none --experimental-strip-types --import ./test/register-hooks.mjs test/*.test.ts",
+    "test:isolated": "node --test --experimental-strip-types --import ./test/register-hooks.mjs test/*.test.ts",
+    "test:catalog": "node --test --test-isolation=none --experimental-strip-types --import ./test/register-hooks.mjs test/catalog.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

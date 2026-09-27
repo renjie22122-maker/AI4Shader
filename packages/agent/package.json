@@ -1,0 +1,29 @@
+{
+  "name": "@ai4shader/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent layer: the budgeted intent -> patch -> emit loop, its LLM boundary, and the deterministic providers that make it testable offline.",
+  "exports": {
+    ".": "./dist/index.js",
+    "./types": "./dist/types.js",
+    "./loop": "./dist/loop.js",
+    "./repair": "./dist/repair.js",
+    "./policy": "./dist/policy.js",
+    "./context": "./dist/context.js",
+    "./provider/stub": "./dist/provider/stub.js",
+    "./provider/http": "./dist/provider/http.js",
+    "./provider/parse": "./dist/provider/parse.js",
+    "./provider/prompt": "./dist/provider/prompt.js"
+  },
+  "scripts": {
+    "build": "node --experimental-strip-types --experimental-transform-types ../../scripts/project-ts.ts",
+    "test": "node --test --test-isolation=none --experimental-strip-types --import ./test/register-hooks.mjs test/*.test.ts",
+    "test:isolated": "node --test --experimental-strip-types --import ./test/register-hooks.mjs test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

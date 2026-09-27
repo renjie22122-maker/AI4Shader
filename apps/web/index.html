@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI4Shader 工作台 — 实时多目标 shader 预览</title>
+    <meta
+      name="description"
+      content="Shader IR 的真实 GPU 预览工作台：WebGL2 / WebGPU 实机编译、自动滑杆面板、六格式源码视图、参考图评分与参数搜索。"
+    />
+    <!-- Served as a static file from the repo root; no bundler, no CSS import in JS. -->
+    <link rel="stylesheet" href="./src/style.css" />
+    <style>
+      /* Critical, inline: the shell is dark before the stylesheet lands, so the first
+         paint is never a white flash in a dark room. Everything else is in src/style.css. */
+      html,
+      body {
+        margin: 0;
+        background: #0e1116;
+        color: #d7dee8;
+        font: 13px/1.5 "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      }
+      #boot {
+        padding: 24px;
+        color: #8b98a9;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header id="topbar">
+        <div class="brand">
+          AI4Shader<span class="brand-sub">工作台</span>
+        </div>
+        <div id="backend-strip" class="strip"></div>
+        <div id="compile-strip" class="strip"></div>
+      </header>
+
+      <div id="banners"></div>
+
+      <main>
+        <aside class="col col-left">
+          <section class="card">
+            <h2>让 Agent 写<span class="hint">描述 → 六格式</span></h2>
+            <div id="author"></div>
+          </section>
+          <section class="card">
+            <h2>参数<span class="hint">由 IR 自动生成</span></h2>
+            <div id="params"></div>
+          </section>
+          <section class="card">
+            <h2>信息</h2>
+            <div id="info"></div>
+          </section>
+        </aside>
+
+        <section class="col col-center">
+          <div id="toolbar" class="toolbar"></div>
+          <div class="stage">
+            <canvas id="preview" width="512" height="512"></canvas>
+          </div>
+          <div id="quality-strip" class="quality-strip"></div>
+          <div id="surface-strip" class="surface-strip" hidden></div>
+          <section class="card">
+            <h2>参考图匹配<span class="hint">SSIM / 直方图 / 频带归因</span></h2>
+            <div id="compare"></div>
+          </section>
+        </section>
+
+        <aside class="col col-right">
+          <section class="card card-grow">
+            <h2>生成代码<span class="hint">六目标 · 按需发射</span></h2>
+            <div id="codegen"></div>
+          </section>
+        </aside>
+      </main>
+
+      <footer id="statusbar"></footer>
+    </div>
+
+    <noscript>
+      <p style="padding: 24px">这个工作台需要 JavaScript 与 WebGL2 才能预览 shader。</p>
+    </noscript>
+
+    <!--
+      Zero-build entry point.
+
+      This page is served as-is from the repository root; there is no bundler in the loop.
+      The only build step in the project erases the types from `src/**/*.ts` into
+      `dist/**/*.js` (the same projection the IR package and the CLI use):
+
+          node --experimental-transform-types scripts/project-ts.ts
+          node scripts/serve.mjs          # http://127.0.0.1:5183/
+
+      The static server must serve the **repo root**, because this module graph reaches
+      out of `apps/web` by relative path (`../../../packages/ir/dist/*.js`).
+
+      ## The import map below is load-bearing, and `scripts/check-imports.mjs` enforces it
+
+      This page used to have no import map, and the design notes said so proudly: every
+      specifier was supposed to be a real relative path, so that Node and the browser agree.
+      That claim was **false**. `packages/agent/dist/*.js` imports `@ai4shader/ir` and
+      `@ai4shader/ir/catalog` by bare specifier — which Node resolves through the
+      `node_modules/@ai4shader` links and a browser refuses outright:
+
+          Failed to resolve module specifier "@ai4shader/ir".
+          Relative references must start with either "/", "./", or "../".
+
+      A refused specifier fails the **entire** module graph, so `dist/main.js` never ran and
+      the page rendered its static shell with every panel empty. Nothing on the Node side
+      could see it: `check-imports.mjs` only looked at relative specifiers, and then printed
+      a paragraph suggesting you grep for bare ones by hand.
+
+      So the map is here, it is explicit, and it is checked. Every entry is an **exact**
+      specifier mapped to an exact file — no trailing-slash prefix mapping, because import
+      maps do no extension resolution and `"@ai4shader/ir/": "/packages/ir/dist/"` would send
+      `@ai4shader/ir/types` to a file named `types`. `check-imports.mjs` fails on a bare
+      specifier with no entry, on an entry pointing at a missing file, and on an entry
+      nothing imports.
+
+      A second resolution system is a cost. An unchecked one is how this page went blank.
+    -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@ai4shader/ir": "/packages/ir/dist/index.js",
+          "@ai4shader/ir/catalog": "/packages/ir/dist/catalog/index.js"
+        }
+      }
+    </script>
+    <script type="module" src="./dist/main.js"></script>
+  </body>
+</html>

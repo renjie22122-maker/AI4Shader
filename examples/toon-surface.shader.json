@@ -1,0 +1,623 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "from": {
+          "node": "n_normal",
+          "port": "normal"
+        },
+        "to": {
+          "node": "n_nl",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_light",
+          "port": "direction"
+        },
+        "to": {
+          "node": "n_nl",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_nl",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_shade",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_shade",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_base",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_normal",
+          "port": "normal"
+        },
+        "to": {
+          "node": "n_nv",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_view",
+          "port": "direction"
+        },
+        "to": {
+          "node": "n_nv",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_nv",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_rim",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_rim",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_rim_inv",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_rim_inv",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_rim_amt",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_base",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_rim_mix",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_rim_amt",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_rim_mix",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_world",
+          "port": "position"
+        },
+        "to": {
+          "node": "n_height",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_height",
+          "port": "y"
+        },
+        "to": {
+          "node": "n_grad",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_rim_mix",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_grad_mix",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_grad",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_grad_mix",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_grad_mix",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "color"
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n_normal",
+        "kind": "normal",
+        "note": "世界空间单位法线。四边形着色器没有这个量 —— 这正是本示例存在的理由。",
+        "pos": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_light",
+        "kind": "light_dir",
+        "note": "由表面指向光源的单位向量，由宿主提供（IR 契约里 iLightDir 就是单位向量）。",
+        "pos": {
+          "x": 0,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_view",
+        "kind": "view_dir",
+        "note": "由表面指向相机的单位向量，宿主用 iCameraPos 与插值出的世界坐标算出来。",
+        "pos": {
+          "x": 0,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_world",
+        "kind": "world_pos",
+        "note": "插值出的世界坐标。第三个图层用它做上下渐变。",
+        "pos": {
+          "x": 0,
+          "y": 360
+        }
+      },
+      {
+        "id": "n_nl",
+        "inputs": {
+          "a": {
+            "node": "n_normal",
+            "port": "normal"
+          },
+          "b": {
+            "node": "n_light",
+            "port": "direction"
+          }
+        },
+        "kind": "dot",
+        "note": "N·L —— 唯一决定明暗的量。没有阴影贴图时，它也是明暗分界的全部依据。",
+        "pos": {
+          "x": 260,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_shade",
+        "inputs": {
+          "value": {
+            "node": "n_nl",
+            "port": "value"
+          }
+        },
+        "kind": "smoothstep",
+        "note": "把 N·L 压成一条窄带：带内是过渡，带外是平的。两个边界之间的宽度就是\"有多卡通\"。",
+        "params": {
+          "edge0": {
+            "group": "明暗分层",
+            "kind": "param",
+            "label": "暗部边界",
+            "max": 1,
+            "min": -1,
+            "name": "u_shadeLow",
+            "step": 0.005,
+            "type": "float",
+            "value": 0.06
+          },
+          "edge1": {
+            "group": "明暗分层",
+            "kind": "param",
+            "label": "亮部边界",
+            "max": 1,
+            "min": -1,
+            "name": "u_shadeHigh",
+            "step": 0.005,
+            "type": "float",
+            "value": 0.34
+          }
+        },
+        "pos": {
+          "x": 460,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_base",
+        "inputs": {
+          "t": {
+            "node": "n_shade",
+            "port": "value"
+          }
+        },
+        "kind": "color_ramp",
+        "note": "三段固有色：阴影偏冷紫，中间调中性，亮部暖白。卡通着色的\"贵\"感几乎全在这三个颜色里。",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.09,
+              0.1,
+              0.19,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.62,
+              0.5,
+              0.62,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.98,
+              0.95,
+              0.88,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 660,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_nv",
+        "inputs": {
+          "a": {
+            "node": "n_normal",
+            "port": "normal"
+          },
+          "b": {
+            "node": "n_view",
+            "port": "direction"
+          }
+        },
+        "kind": "dot",
+        "note": "N·V：正对相机时接近 1，轮廓处趋近 0。",
+        "pos": {
+          "x": 260,
+          "y": 220
+        }
+      },
+      {
+        "id": "n_rim",
+        "inputs": {
+          "value": {
+            "node": "n_nv",
+            "port": "value"
+          }
+        },
+        "kind": "smoothstep",
+        "note": "正对相机的地方为 1，所以下面还要取反。edge0 < edge1 是必须的：反过来的 smoothstep 在 GLSL 里未定义。",
+        "params": {
+          "edge0": {
+            "group": "边缘光",
+            "kind": "param",
+            "label": "边缘光起点",
+            "max": 1,
+            "min": 0,
+            "name": "u_rimStart",
+            "step": 0.005,
+            "type": "float",
+            "value": 0.35
+          },
+          "edge1": {
+            "group": "边缘光",
+            "kind": "param",
+            "label": "边缘光终点",
+            "max": 1,
+            "min": 0,
+            "name": "u_rimEnd",
+            "step": 0.005,
+            "type": "float",
+            "value": 0.95
+          }
+        },
+        "pos": {
+          "x": 460,
+          "y": 220
+        }
+      },
+      {
+        "id": "n_rim_inv",
+        "inputs": {
+          "b": {
+            "node": "n_rim",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "note": "op=1 是减法：1 - smoothstep(...)，于是轮廓处为 1、正面为 0。",
+        "params": {
+          "a": {
+            "kind": "float",
+            "value": 1
+          },
+          "op": {
+            "kind": "float",
+            "max": 14,
+            "min": 0,
+            "step": 1,
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 660,
+          "y": 220
+        }
+      },
+      {
+        "id": "n_rim_amt",
+        "inputs": {
+          "a": {
+            "node": "n_rim_inv",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "note": "op=2 是乘法：把边缘光的强度做成一个滑杆。`mix` 内部会 clamp，所以超过 1 只是全亮。",
+        "params": {
+          "b": {
+            "group": "边缘光",
+            "kind": "param",
+            "label": "边缘光强度",
+            "max": 2,
+            "min": 0,
+            "name": "u_rimStrength",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.85
+          },
+          "op": {
+            "kind": "float",
+            "max": 14,
+            "min": 0,
+            "step": 1,
+            "value": 2
+          }
+        },
+        "pos": {
+          "x": 860,
+          "y": 220
+        }
+      },
+      {
+        "id": "n_rim_mix",
+        "inputs": {
+          "a": {
+            "node": "n_base",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_rim_amt",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "note": "冷色边缘光叠在明暗分层之上 —— 第一层与第二层的合成点。",
+        "params": {
+          "b": {
+            "kind": "color",
+            "value": [
+              0.35,
+              0.75,
+              1,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1060,
+          "y": 140
+        }
+      },
+      {
+        "id": "n_height",
+        "inputs": {
+          "value": {
+            "node": "n_world",
+            "port": "position"
+          }
+        },
+        "kind": "split_vec4",
+        "note": "取世界坐标的 y。向量拆分节点存在的理由就在这：连线规则只允许加宽，一个 vec4 进不了 float 输入。",
+        "pos": {
+          "x": 260,
+          "y": 400
+        }
+      },
+      {
+        "id": "n_grad",
+        "inputs": {
+          "value": {
+            "node": "n_height",
+            "port": "y"
+          }
+        },
+        "kind": "smoothstep",
+        "note": "世界空间的高度渐变，而不是屏幕空间 —— 所以相机绕着模型转的时候，它不会跟着动。",
+        "params": {
+          "edge0": {
+            "group": "高度渐变",
+            "kind": "param",
+            "label": "渐变下界",
+            "max": 4,
+            "min": -4,
+            "name": "u_gradLow",
+            "step": 0.01,
+            "type": "float",
+            "value": -0.8
+          },
+          "edge1": {
+            "group": "高度渐变",
+            "kind": "param",
+            "label": "渐变上界",
+            "max": 4,
+            "min": -4,
+            "name": "u_gradHigh",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.9
+          }
+        },
+        "pos": {
+          "x": 460,
+          "y": 400
+        }
+      },
+      {
+        "id": "n_grad_mix",
+        "inputs": {
+          "a": {
+            "node": "n_rim_mix",
+            "port": "value"
+          },
+          "t": {
+            "node": "n_grad",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "note": "第三层叠上去：顶部偏暖，底部保持前两层的结果。",
+        "params": {
+          "b": {
+            "kind": "color",
+            "value": [
+              1,
+              0.86,
+              0.62,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1260,
+          "y": 300
+        }
+      },
+      {
+        "id": "n_out",
+        "inputs": {
+          "color": {
+            "node": "n_grad_mix",
+            "port": "value"
+          }
+        },
+        "kind": "output",
+        "pos": {
+          "x": 1460,
+          "y": 240
+        }
+      }
+    ]
+  },
+  "hash": "0af9bd04e4f9b269",
+  "id": "toon-surface",
+  "irVersion": "1.0.0",
+  "provenance": {
+    "model": "hand-authored",
+    "steps": [
+      {
+        "actor": "human",
+        "at": "2024-01-02T00:00:00.000Z",
+        "summary": "手写参考示例：读取表面法线的卡通着色（三层叠加：明暗分层 + 边缘光 + 世界高度渐变）"
+      }
+    ]
+  },
+  "render": {
+    "maxIterations": 1,
+    "qualityTier": "medium",
+    "referenceGpu": "集显 / 移动端 GPU",
+    "resolution": [
+      512,
+      512
+    ],
+    "targetFps": 60,
+    "transparent": false
+  },
+  "spec": {
+    "antiFeatures": [
+      "平滑的写实光照过渡",
+      "纯屏幕空间坐标产生的假立体感",
+      "与光照方向无关的固定贴图"
+    ],
+    "category": "surface-shading",
+    "features": [
+      "明暗之间是可控宽度的硬过渡，不是连续渐变",
+      "轮廓处有一圈亮边（边缘光），强度可调",
+      "固有色随世界高度变化，模型上下端色相不同",
+      "三个图层各自独立可调，互不干扰"
+    ],
+    "intent": "读表面法线与光向的三渲二（卡通）着色：硬边明暗分界、轮廓边缘光、随高度变化的固有色",
+    "outOfScope": [
+      "不做描边（outline）：描边需要背面膨胀或后处理，不是一次前向着色能表达的",
+      "不含阴影贴图，明暗分界只由 N·L 决定，看不到自身遮挡"
+    ],
+    "tags": [
+      "三渲二",
+      "卡通",
+      "表面着色",
+      "边缘光",
+      "多层叠加"
+    ]
+  },
+  "stage": "fragment",
+  "targetNotes": {
+    "glsl": "这是 surface 片元着色器：需要宿主提供写入 vWorldPos / vNormal / vUv 的顶点阶段，见文件头注释。工作台的 3D 预览就是这样的宿主。",
+    "hlsl": "VSMain + PSMain 成对发射，可直接编译进管线。",
+    "msl": "在非 macOS 环境无法本地编译验证。",
+    "shaderlab": "表面输入映射到 Unity 的 worldNormal / worldPos / _WorldSpaceCameraPos / _WorldSpaceLightPos0。",
+    "ue": "表面输入来自 Custom 节点的四个输入引脚，需要在材质图里接好。",
+    "wgsl": "顶点与片元在同一个文件里，变换块绑定在 binding 3。"
+  },
+  "targets": [
+    "glsl",
+    "wgsl",
+    "hlsl",
+    "msl",
+    "shaderlab",
+    "ue"
+  ],
+  "title": "三渲二（卡通着色）表面"
+}

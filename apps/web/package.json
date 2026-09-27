@@ -1,0 +1,23 @@
+{
+  "name": "@ai4shader/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI4Shader 浏览器工作台：真实 GPU 预览（WebGL2/WebGPU）+ 自动滑杆面板 + 六格式源码视图 + 参考图评分与参数搜索。零框架依赖。",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
+  },
+  "vite": {
+    "server": {
+      "port": 5183,
+      "strictPort": false
+    }
+  }
+}

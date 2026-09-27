@@ -1,0 +1,1864 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_center",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_ripple_src",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ripple_src",
+          "port": "radius"
+        },
+        "to": {
+          "node": "n_ripple_freq",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ripple_freq",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_ripple_wave",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_time",
+          "port": "time"
+        },
+        "to": {
+          "node": "n_ripple_wave",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ripple_wave",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_ripple",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ripple",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_ripple01",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_half",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_ripple01",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_caustic",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_surface_noise",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_surface_noise",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_water_mix",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ripple01",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_water_mix",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_water_mix",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_water_tone",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_reflect_ramp",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_reflect_ramp",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_reflect_mask",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_reflect_ramp",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_reflect_tint",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_water_tone",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_reflect_detail",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_caustic",
+          "port": "edges"
+        },
+        "to": {
+          "node": "n_reflect_detail",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_reflect_detail",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_reflect_tinted",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_reflect_tint",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_reflect_tinted",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_reflect_mask",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_reflect_tinted",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_pad_uv",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_pad_sdf",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad_sdf",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_pad_color",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad_sdf",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_pad_mask",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_reflect_tinted",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_pad",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad_color",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_pad",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad_mask",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_pad",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_pad2_uv",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad2_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_pad2_sdf",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad_color",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_pad2_rgb",
+          "port": "color"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad2_sdf",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_pad2_mask",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_pad2",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad2_rgb",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_pad2",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad2_mask",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_pad2",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_center",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_flower_uv",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_flower_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_petals",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_petals",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_petal_sdf",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_petal_sdf",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_petal_color",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_petal_sdf",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_petal_mask",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_pad2",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_flower",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_petal_color",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_flower",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_petal_mask",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_flower",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_flower_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_flower_core",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_flower_core",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_core_color",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_flower_core",
+          "port": "distance"
+        },
+        "to": {
+          "node": "n_core_mask",
+          "port": "value"
+        }
+      },
+      {
+        "from": {
+          "node": "n_flower",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_flower_full",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_core_color",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_flower_full",
+          "port": "b"
+        }
+      },
+      {
+        "from": {
+          "node": "n_core_mask",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_flower_full",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_haze",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_haze",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_haze_amt",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_flower_full",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_haze_mix",
+          "port": "a"
+        }
+      },
+      {
+        "from": {
+          "node": "n_haze_amt",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_haze_mix",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_haze_mix",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_grade",
+          "port": "color"
+        }
+      },
+      {
+        "from": {
+          "node": "n_grade",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "color"
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n_uv",
+        "kind": "uv",
+        "pos": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_center",
+        "inputs": {
+          "uv": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "transform",
+        "note": "居中到 -1..1：后面所有元素的摆放都在这个坐标系里做。",
+        "params": {
+          "offset": {
+            "kind": "vec2",
+            "value": [
+              -1,
+              -1
+            ]
+          },
+          "rotate": {
+            "kind": "float",
+            "value": 0
+          },
+          "scale": {
+            "kind": "vec2",
+            "value": [
+              2,
+              2
+            ]
+          }
+        },
+        "pos": {
+          "x": 0,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_time",
+        "kind": "time",
+        "params": {
+          "speed": {
+            "group": "水面",
+            "kind": "param",
+            "label": "水流速度",
+            "max": 2,
+            "min": 0,
+            "name": "u_speed",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.35
+          }
+        },
+        "pos": {
+          "x": 0,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_ripple_src",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "polar",
+        "note": "极坐标给出到波源的距离，涟漪就是它的函数。",
+        "params": {
+          "center": {
+            "kind": "vec2",
+            "value": [
+              0.2,
+              0.1
+            ]
+          }
+        },
+        "pos": {
+          "x": 200,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_ripple_freq",
+        "inputs": {
+          "a": {
+            "node": "n_ripple_src",
+            "port": "radius"
+          }
+        },
+        "kind": "math",
+        "params": {
+          "b": {
+            "group": "水面",
+            "kind": "param",
+            "label": "涟漪密度",
+            "max": 80,
+            "min": 4,
+            "name": "u_rippleDensity",
+            "step": 1,
+            "type": "float",
+            "value": 26
+          },
+          "op": {
+            "kind": "float",
+            "value": 0
+          }
+        },
+        "pos": {
+          "x": 400,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_ripple_wave",
+        "inputs": {
+          "a": {
+            "node": "n_ripple_freq",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_time",
+            "port": "time"
+          }
+        },
+        "kind": "math",
+        "note": "减去时间：整圈涟漪向外走。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 600,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_ripple",
+        "inputs": {
+          "a": {
+            "node": "n_ripple_wave",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "note": "op=9 是 sin。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 9
+          }
+        },
+        "pos": {
+          "x": 800,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_half",
+        "kind": "const_float",
+        "params": {
+          "value": {
+            "kind": "float",
+            "value": 0.5
+          }
+        },
+        "pos": {
+          "x": 800,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_ripple01",
+        "inputs": {
+          "a": {
+            "node": "n_ripple",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_half",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "note": "sin 的输出是 -1..1，乘 0.5 之后喂给需要 0..1 的色标。",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 2
+          }
+        },
+        "pos": {
+          "x": 1000,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_caustic",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "voronoi",
+        "note": "voronoi 的 edges 是细胞边界 —— 水光的经典来源。",
+        "params": {
+          "randomness": {
+            "kind": "float",
+            "value": 0.9
+          },
+          "scale": {
+            "group": "水面",
+            "kind": "param",
+            "label": "水光尺度",
+            "max": 24,
+            "min": 1,
+            "name": "u_causticScale",
+            "step": 0.5,
+            "type": "float",
+            "value": 7
+          }
+        },
+        "pos": {
+          "x": 200,
+          "y": 140
+        }
+      },
+      {
+        "id": "n_surface_noise",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "fbm",
+        "params": {
+          "gain": {
+            "kind": "float",
+            "value": 0.5
+          },
+          "lacunarity": {
+            "kind": "float",
+            "value": 2
+          },
+          "octaves": {
+            "kind": "float",
+            "value": 4
+          },
+          "ridged": {
+            "kind": "float",
+            "value": 0.2
+          },
+          "scale": {
+            "group": "水面",
+            "kind": "param",
+            "label": "水面纹理密度",
+            "max": 12,
+            "min": 0.5,
+            "name": "u_waterScale",
+            "step": 0.1,
+            "type": "float",
+            "value": 3.5
+          }
+        },
+        "pos": {
+          "x": 200,
+          "y": 280
+        }
+      },
+      {
+        "id": "n_water_mix",
+        "inputs": {
+          "a": {
+            "node": "n_surface_noise",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_ripple01",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "params": {
+          "op": {
+            "kind": "float",
+            "value": 0
+          }
+        },
+        "pos": {
+          "x": 400,
+          "y": 220
+        }
+      },
+      {
+        "id": "n_water_tone",
+        "inputs": {
+          "t": {
+            "node": "n_water_mix",
+            "port": "value"
+          }
+        },
+        "kind": "color_ramp",
+        "note": "水色：深处近黑的蓝绿 → 浅处的青。",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.02,
+              0.07,
+              0.09,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.06,
+              0.22,
+              0.24,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.35,
+              0.62,
+              0.6,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 600,
+          "y": 220
+        }
+      },
+      {
+        "id": "n_reflect_ramp",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "gradient",
+        "note": "竖直渐变用 gradient + 90°，一个节点；拿 uv 的 y 分量要额外拆一次向量。",
+        "params": {
+          "angle": {
+            "kind": "float",
+            "value": 1.5707
+          },
+          "scale": {
+            "kind": "float",
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 600,
+          "y": 360
+        }
+      },
+      {
+        "id": "n_reflect_mask",
+        "inputs": {
+          "value": {
+            "node": "n_reflect_ramp",
+            "port": "value"
+          }
+        },
+        "kind": "smoothstep",
+        "params": {
+          "edge0": {
+            "group": "倒影",
+            "kind": "param",
+            "label": "反射下界",
+            "max": 1,
+            "min": -1,
+            "name": "u_reflectLow",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.05
+          },
+          "edge1": {
+            "group": "倒影",
+            "kind": "param",
+            "label": "反射上界",
+            "max": 1,
+            "min": -1,
+            "name": "u_reflectHigh",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.75
+          }
+        },
+        "pos": {
+          "x": 800,
+          "y": 360
+        }
+      },
+      {
+        "id": "n_reflect_tint",
+        "inputs": {
+          "t": {
+            "node": "n_reflect_ramp",
+            "port": "value"
+          }
+        },
+        "kind": "color_ramp",
+        "note": "黄昏的暖 → 天空的冷，颜色本身随高度变化。",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              1,
+              0.72,
+              0.55,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.75,
+              0.55,
+              0.75,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.45,
+              0.6,
+              0.9,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 800,
+          "y": 480
+        }
+      },
+      {
+        "id": "n_reflect_detail",
+        "inputs": {
+          "a": {
+            "node": "n_water_tone",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_caustic",
+            "port": "edges"
+          }
+        },
+        "kind": "mix",
+        "note": "用水光的亮边打散倒影，免得它是一块平的色带。",
+        "params": {
+          "b": {
+            "kind": "color",
+            "value": [
+              1,
+              0.95,
+              0.9,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1000,
+          "y": 300
+        }
+      },
+      {
+        "id": "n_reflect_tinted",
+        "inputs": {
+          "a": {
+            "node": "n_reflect_detail",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_reflect_tint",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_reflect_mask",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "pos": {
+          "x": 1200,
+          "y": 300
+        }
+      },
+      {
+        "id": "n_pad_uv",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "transform",
+        "note": "一块叶子 = 一套自己的坐标系 + 一个 sdf。摆放靠 transform，不靠改 sdf 的参数。",
+        "params": {
+          "offset": {
+            "kind": "vec2",
+            "value": [
+              -0.45,
+              0.3
+            ]
+          },
+          "rotate": {
+            "group": "睡莲",
+            "kind": "param",
+            "label": "叶片朝向",
+            "max": 3.15,
+            "min": -3.15,
+            "name": "u_padRotate",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.4
+          },
+          "scale": {
+            "kind": "vec2",
+            "value": [
+              1,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1200,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_pad_sdf",
+        "inputs": {
+          "uv": {
+            "node": "n_pad_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "sdf",
+        "params": {
+          "radius": {
+            "kind": "float",
+            "value": 0.18
+          },
+          "shape": {
+            "kind": "float",
+            "value": 0
+          },
+          "size": {
+            "kind": "vec2",
+            "value": [
+              0.34,
+              0.3
+            ]
+          },
+          "smoothness": {
+            "kind": "float",
+            "value": 0.02
+          }
+        },
+        "pos": {
+          "x": 1400,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_pad_color",
+        "inputs": {
+          "t": {
+            "node": "n_pad_sdf",
+            "port": "distance"
+          }
+        },
+        "kind": "color_ramp",
+        "note": "用 distance 上色：叶心深、叶缘亮，天然有一点体积感。",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.06,
+              0.2,
+              0.1,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.16,
+              0.4,
+              0.18,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.35,
+              0.62,
+              0.3,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1400,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_pad_mask",
+        "inputs": {
+          "value": {
+            "node": "n_pad_sdf",
+            "port": "distance"
+          }
+        },
+        "kind": "antialias",
+        "note": "边缘用 antialias 而不是 sdf 自带的 mask：后者的宽度是 uv 单位里的固定值，远了太利、近了太糊；antialias 用 fwidth(distance) 把过渡宽度绑到**一个像素**上，缩放时边缘才是稳定的。",
+        "pos": {
+          "x": 1600,
+          "y": 180
+        }
+      },
+      {
+        "id": "n_pad",
+        "inputs": {
+          "a": {
+            "node": "n_reflect_tinted",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_pad_color",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_pad_mask",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "pos": {
+          "x": 1800,
+          "y": 300
+        }
+      },
+      {
+        "id": "n_pad2_uv",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "transform",
+        "params": {
+          "offset": {
+            "kind": "vec2",
+            "value": [
+              0.35,
+              -0.28
+            ]
+          },
+          "rotate": {
+            "kind": "float",
+            "value": -1.1
+          },
+          "scale": {
+            "kind": "vec2",
+            "value": [
+              0.7,
+              0.7
+            ]
+          }
+        },
+        "pos": {
+          "x": 1200,
+          "y": 60
+        }
+      },
+      {
+        "id": "n_pad2_sdf",
+        "inputs": {
+          "uv": {
+            "node": "n_pad2_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "sdf",
+        "params": {
+          "radius": {
+            "kind": "float",
+            "value": 0.16
+          },
+          "shape": {
+            "kind": "float",
+            "value": 0
+          },
+          "size": {
+            "kind": "vec2",
+            "value": [
+              0.3,
+              0.26
+            ]
+          },
+          "smoothness": {
+            "kind": "float",
+            "value": 0.02
+          }
+        },
+        "pos": {
+          "x": 1400,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_pad2_rgb",
+        "inputs": {
+          "color": {
+            "node": "n_pad_color",
+            "port": "color"
+          }
+        },
+        "kind": "hsv",
+        "note": "第二片叶子换个色相，免得两片看起来是复制粘贴。",
+        "params": {
+          "hue_shift": {
+            "kind": "float",
+            "value": 0.04
+          },
+          "saturation": {
+            "kind": "float",
+            "value": 1.05
+          },
+          "value": {
+            "kind": "float",
+            "value": 0.85
+          }
+        },
+        "pos": {
+          "x": 1600,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_pad2_mask",
+        "inputs": {
+          "value": {
+            "node": "n_pad2_sdf",
+            "port": "distance"
+          }
+        },
+        "kind": "antialias",
+        "pos": {
+          "x": 1600,
+          "y": 40
+        }
+      },
+      {
+        "id": "n_pad2",
+        "inputs": {
+          "a": {
+            "node": "n_pad",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_pad2_rgb",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_pad2_mask",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "pos": {
+          "x": 2000,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_flower_uv",
+        "inputs": {
+          "uv": {
+            "node": "n_center",
+            "port": "uv"
+          }
+        },
+        "kind": "transform",
+        "params": {
+          "offset": {
+            "kind": "vec2",
+            "value": [
+              -0.6,
+              -0.55
+            ]
+          },
+          "rotate": {
+            "kind": "float",
+            "value": 0
+          },
+          "scale": {
+            "kind": "vec2",
+            "value": [
+              1,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1600,
+          "y": 480
+        }
+      },
+      {
+        "id": "n_petals",
+        "inputs": {
+          "uv": {
+            "node": "n_flower_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "kaleidoscope",
+        "params": {
+          "segments": {
+            "group": "荷花",
+            "kind": "param",
+            "label": "花瓣数",
+            "max": 16,
+            "min": 3,
+            "name": "u_petals",
+            "step": 1,
+            "type": "float",
+            "value": 7
+          }
+        },
+        "pos": {
+          "x": 1800,
+          "y": 480
+        }
+      },
+      {
+        "id": "n_petal_sdf",
+        "inputs": {
+          "uv": {
+            "node": "n_petals",
+            "port": "uv"
+          }
+        },
+        "kind": "sdf",
+        "note": "star 形状放在万花筒坐标里，一片花瓣自动变成一圈花瓣。",
+        "params": {
+          "radius": {
+            "kind": "float",
+            "value": 0.05
+          },
+          "shape": {
+            "kind": "float",
+            "value": 4
+          },
+          "size": {
+            "kind": "vec2",
+            "value": [
+              0.12,
+              0.5
+            ]
+          },
+          "smoothness": {
+            "kind": "float",
+            "value": 0.03
+          }
+        },
+        "pos": {
+          "x": 2000,
+          "y": 480
+        }
+      },
+      {
+        "id": "n_petal_color",
+        "inputs": {
+          "t": {
+            "node": "n_petal_sdf",
+            "port": "distance"
+          }
+        },
+        "kind": "color_ramp",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.95,
+              0.72,
+              0.82,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.92,
+              0.35,
+              0.55,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.6,
+              0.1,
+              0.3,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 2000,
+          "y": 360
+        }
+      },
+      {
+        "id": "n_petal_mask",
+        "inputs": {
+          "value": {
+            "node": "n_petal_sdf",
+            "port": "distance"
+          }
+        },
+        "kind": "antialias",
+        "note": "花瓣是最容易出锯齿的地方：细、密、又靠近画面中心。",
+        "pos": {
+          "x": 2200,
+          "y": 480
+        }
+      },
+      {
+        "id": "n_flower",
+        "inputs": {
+          "a": {
+            "node": "n_pad2",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_petal_color",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_petal_mask",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "pos": {
+          "x": 2400,
+          "y": 420
+        }
+      },
+      {
+        "id": "n_flower_core",
+        "inputs": {
+          "uv": {
+            "node": "n_flower_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "sdf",
+        "params": {
+          "radius": {
+            "kind": "float",
+            "value": 0.04
+          },
+          "shape": {
+            "kind": "float",
+            "value": 0
+          },
+          "size": {
+            "kind": "vec2",
+            "value": [
+              0.08,
+              0.08
+            ]
+          },
+          "smoothness": {
+            "kind": "float",
+            "value": 0.02
+          }
+        },
+        "pos": {
+          "x": 2000,
+          "y": 600
+        }
+      },
+      {
+        "id": "n_core_color",
+        "inputs": {
+          "t": {
+            "node": "n_flower_core",
+            "port": "distance"
+          }
+        },
+        "kind": "color_ramp",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.85,
+              0.75,
+              0.2,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.98,
+              0.9,
+              0.45,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              1,
+              0.98,
+              0.8,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 2200,
+          "y": 600
+        }
+      },
+      {
+        "id": "n_core_mask",
+        "inputs": {
+          "value": {
+            "node": "n_flower_core",
+            "port": "distance"
+          }
+        },
+        "kind": "antialias",
+        "pos": {
+          "x": 2400,
+          "y": 600
+        }
+      },
+      {
+        "id": "n_flower_full",
+        "inputs": {
+          "a": {
+            "node": "n_flower",
+            "port": "value"
+          },
+          "b": {
+            "node": "n_core_color",
+            "port": "color"
+          },
+          "t": {
+            "node": "n_core_mask",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "pos": {
+          "x": 2600,
+          "y": 480
+        }
+      },
+      {
+        "id": "n_haze",
+        "inputs": {
+          "uv": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "gradient",
+        "note": "雾用的是屏幕空间的 uv（不是居中坐标）：它是一层空气，不跟着构图走。",
+        "params": {
+          "angle": {
+            "kind": "float",
+            "value": 1.5707
+          },
+          "scale": {
+            "kind": "float",
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 2400,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_haze_amt",
+        "inputs": {
+          "a": {
+            "node": "n_haze",
+            "port": "value"
+          }
+        },
+        "kind": "math",
+        "params": {
+          "b": {
+            "group": "氛围",
+            "kind": "param",
+            "label": "水雾",
+            "max": 2,
+            "min": 0,
+            "name": "u_haze",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.22
+          },
+          "op": {
+            "kind": "float",
+            "value": 2
+          }
+        },
+        "pos": {
+          "x": 2600,
+          "y": 240
+        }
+      },
+      {
+        "id": "n_haze_mix",
+        "inputs": {
+          "a": {
+            "node": "n_flower_full",
+            "port": "value"
+          },
+          "t": {
+            "node": "n_haze_amt",
+            "port": "value"
+          }
+        },
+        "kind": "mix",
+        "params": {
+          "b": {
+            "kind": "color",
+            "value": [
+              1,
+              0.85,
+              0.7,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 2800,
+          "y": 360
+        }
+      },
+      {
+        "id": "n_grade",
+        "inputs": {
+          "color": {
+            "node": "n_haze_mix",
+            "port": "value"
+          }
+        },
+        "kind": "grade",
+        "params": {
+          "contrast": {
+            "group": "调色",
+            "kind": "param",
+            "label": "对比度",
+            "max": 3,
+            "min": 0.5,
+            "name": "u_contrast",
+            "step": 0.01,
+            "type": "float",
+            "value": 1.15
+          },
+          "exposure": {
+            "kind": "float",
+            "value": 1.05
+          },
+          "gamma": {
+            "kind": "float",
+            "value": 1
+          },
+          "saturation": {
+            "group": "调色",
+            "kind": "param",
+            "label": "饱和度",
+            "max": 2,
+            "min": 0,
+            "name": "u_saturation",
+            "step": 0.01,
+            "type": "float",
+            "value": 1.1
+          },
+          "tint": {
+            "kind": "vec3",
+            "value": [
+              0.98,
+              1,
+              0.98
+            ]
+          }
+        },
+        "pos": {
+          "x": 3000,
+          "y": 360
+        }
+      },
+      {
+        "id": "n_out",
+        "inputs": {
+          "color": {
+            "node": "n_grade",
+            "port": "color"
+          }
+        },
+        "kind": "output",
+        "pos": {
+          "x": 3200,
+          "y": 360
+        }
+      }
+    ]
+  },
+  "hash": "cc40be44253a80b6",
+  "id": "lotus-pond",
+  "irVersion": "1.0.0",
+  "provenance": {
+    "model": "hand-authored",
+    "steps": [
+      {
+        "actor": "human",
+        "at": "2024-01-04T00:00:00.000Z",
+        "summary": "手写参考示例：五层叠加的荷塘场景，用来验证目录的表达力上限"
+      }
+    ]
+  },
+  "render": {
+    "maxIterations": 4,
+    "qualityTier": "medium",
+    "referenceGpu": "集显 / 移动端 GPU",
+    "resolution": [
+      512,
+      512
+    ],
+    "targetFps": 60,
+    "transparent": false
+  },
+  "spec": {
+    "antiFeatures": [
+      "规则的棋盘格",
+      "硬边的纯色块"
+    ],
+    "category": "layered-scene",
+    "features": [
+      "水面有随时间移动的细密涟漪与水光",
+      "上半部有天空倒影的暖→冷渐变",
+      "水面上有多片睡莲叶，位置与朝向不同",
+      "有一朵花瓣数可调的荷花",
+      "整体有轻微水雾与调色"
+    ],
+    "intent": "分层叠加的荷塘：水面（涟漪 + 水光）、天空倒影、睡莲叶、荷花、水雾与调色",
+    "outOfScope": [
+      "不含鱼与昆虫 —— 需要动画对象与运动轨迹，不是一层噪声能替代的",
+      "不含真实反射（无 cubemap），倒影是渐变色带加扰动"
+    ],
+    "tags": [
+      "荷塘",
+      "多层",
+      "水面",
+      "场景"
+    ]
+  },
+  "stage": "fragment",
+  "targetNotes": {
+    "msl": "在非 macOS 环境无法本地编译验证。",
+    "shaderlab": "iMouse 映射为 _MousePos；本示例不读鼠标，无额外要求。",
+    "ue": "全部 11 个参数变成 Custom 节点的输入引脚。"
+  },
+  "targets": [
+    "glsl",
+    "wgsl",
+    "hlsl",
+    "msl",
+    "shaderlab",
+    "ue"
+  ],
+  "title": "荷塘"
+}

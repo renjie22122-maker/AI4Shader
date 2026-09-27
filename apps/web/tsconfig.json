@@ -1,0 +1,55 @@
+{
+  // Type checking only (`--noEmit`). `src/*.ts` is the authored source of truth; the
+  // browser and Node load the projection in `dist/*.js` produced by
+  // `scripts/project-ts.ts`, which is why the IR is imported from `packages/ir/dist`
+  // and `allowJs` is on: the checker follows the same files the runtime does.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "types": ["vite/client"],
+    "allowJs": true,
+    "checkJs": false,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+
+    "baseUrl": ".",
+    // Every subpath the program reaches must be mapped, not just the two the app imports
+    // directly. `packages/agent` imports `@ai4shader/ir/types`, and an unmapped subpath does
+    // not fall back to the `.` mapping — it falls through to Node resolution, finds
+    // `dist/*.js` with no declarations, and every imported type silently becomes an error.
+    // Adding a subpath here is a one-line change; discovering it as thirty cascading
+    // "has no exported member" errors is not.
+    "paths": {
+      "@ai4shader/ir": ["../../packages/ir/src/index.ts"],
+      "@ai4shader/ir/catalog": ["../../packages/ir/src/catalog/index.ts"],
+      "@ai4shader/ir/types": ["../../packages/ir/src/types.ts"],
+      "@ai4shader/ir/targets": ["../../packages/ir/src/targets/index.ts"],
+      "@ai4shader/ir/patcher": ["../../packages/ir/src/patcher.ts"],
+      "@ai4shader/agent": ["../../packages/agent/src/index.ts"]
+    }
+  },
+  // `test/` is deliberately NOT included.
+  //
+  // The boot smoke test is Node-targeted — `node:test`, `node:fs` — and type-checking it
+  // needs `@types/node`, which this workspace does not declare. Adding it here would put a
+  // gate in the config that cannot be run in a checkout without npm, and a gate nobody can
+  // run is worse than an honest gap: `packages/ir/tsconfig.json` includes `test/**` and
+  // documents the same dependency, and in this offline checkout that run is red for exactly
+  // this reason. The harness is *run* by `scripts/run-tests.mjs`, not checked; when
+  // `@types/node` is available, add it to `devDependencies` and include `test` here.
+  "include": ["src", "vite.config.ts"]
+}

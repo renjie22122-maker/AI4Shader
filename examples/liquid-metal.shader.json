@@ -1,0 +1,423 @@
+{
+  "graph": {
+    "edges": [
+      {
+        "from": {
+          "node": "n_uv",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_centered",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_centered",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_warp",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_warp",
+          "port": "uv"
+        },
+        "to": {
+          "node": "n_detail",
+          "port": "uv"
+        }
+      },
+      {
+        "from": {
+          "node": "n_detail",
+          "port": "value"
+        },
+        "to": {
+          "node": "n_ramp",
+          "port": "t"
+        }
+      },
+      {
+        "from": {
+          "node": "n_ramp",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_grade",
+          "port": "color"
+        }
+      },
+      {
+        "from": {
+          "node": "n_grade",
+          "port": "color"
+        },
+        "to": {
+          "node": "n_out",
+          "port": "color"
+        }
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n_uv",
+        "kind": "uv",
+        "note": "归一化屏幕坐标。原点在左下，与 GLSL 一致；每个目标在入口点各翻转一次。",
+        "pos": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "n_centered",
+        "inputs": {
+          "uv": {
+            "node": "n_uv",
+            "port": "uv"
+          }
+        },
+        "kind": "transform",
+        "note": "把 uv 从 0..1 映射到 -0.5..0.5 的居中坐标。这是\"居中\"的标准做法：uv 节点只提供一个输出，所以居中由 transform 表达，而不是多输出端口。",
+        "params": {
+          "offset": {
+            "kind": "vec2",
+            "value": [
+              -0.5,
+              -0.5
+            ]
+          },
+          "rotate": {
+            "kind": "float",
+            "value": 0
+          },
+          "scale": {
+            "kind": "vec2",
+            "value": [
+              2,
+              2
+            ]
+          }
+        },
+        "pos": {
+          "x": 130,
+          "y": -120
+        }
+      },
+      {
+        "id": "n_warp",
+        "inputs": {
+          "uv": {
+            "node": "n_centered",
+            "port": "uv"
+          }
+        },
+        "kind": "domain_warp",
+        "note": "域变形：用噪声场推开 uv。这一个节点贡献了绝大部分\"流动感\"。注意它是自包含的——噪声必须按坐标求值才能产生空间变化，所以把某个噪声节点的\"单个值\"接进来是没意义的，IR 里也没有这个输入。要调制变形强度请用 `strength` 参数，或换 `scale`。（早期版本的示例文档在这里挂了一个孤立节点，是错的。）",
+        "params": {
+          "scale": {
+            "group": "变形",
+            "kind": "param",
+            "label": "流动尺度",
+            "max": 4,
+            "min": 0.2,
+            "name": "u_warpScale",
+            "step": 0.05,
+            "type": "float",
+            "value": 0.9
+          },
+          "strength": {
+            "group": "变形",
+            "kind": "param",
+            "label": "流动强度",
+            "max": 1.5,
+            "min": 0,
+            "name": "u_warpStrength",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.45
+          },
+          "tile": {
+            "kind": "float",
+            "value": 1
+          },
+          "time": {
+            "group": "动画",
+            "kind": "param",
+            "label": "流动速度",
+            "max": 2,
+            "min": 0,
+            "name": "u_speed",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.25
+          }
+        },
+        "pos": {
+          "x": 260,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_detail",
+        "inputs": {
+          "uv": {
+            "node": "n_warp",
+            "port": "uv"
+          }
+        },
+        "kind": "fbm",
+        "note": "细节噪声，采样在变形后的空间里，所以纹理跟着流线走而不是贴在屏幕上。",
+        "params": {
+          "gain": {
+            "group": "纹理",
+            "kind": "param",
+            "label": "细节衰减",
+            "max": 0.8,
+            "min": 0.2,
+            "name": "u_gain",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.5
+          },
+          "lacunarity": {
+            "kind": "float",
+            "max": 3,
+            "min": 1.5,
+            "step": 0.05,
+            "value": 2
+          },
+          "octaves": {
+            "group": "纹理",
+            "kind": "param",
+            "label": "细节层数",
+            "max": 8,
+            "min": 1,
+            "name": "u_octaves",
+            "step": 1,
+            "type": "float",
+            "value": 4
+          },
+          "ridged": {
+            "group": "纹理",
+            "kind": "param",
+            "label": "折痕强度",
+            "max": 1,
+            "min": 0,
+            "name": "u_ridged",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.75
+          },
+          "scale": {
+            "group": "纹理",
+            "kind": "param",
+            "label": "纹理密度",
+            "max": 24,
+            "min": 1,
+            "name": "u_detailScale",
+            "step": 0.5,
+            "type": "float",
+            "value": 6
+          },
+          "tile": {
+            "kind": "float",
+            "value": 1
+          }
+        },
+        "pos": {
+          "x": 540,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_ramp",
+        "inputs": {
+          "t": {
+            "node": "n_detail",
+            "port": "value"
+          }
+        },
+        "kind": "color_ramp",
+        "note": "三段色标：暗部近黑偏蓝，中间调枪灰，亮部接近纯白的冷高光。",
+        "params": {
+          "colorA": {
+            "kind": "color",
+            "value": [
+              0.02,
+              0.03,
+              0.05,
+              1
+            ]
+          },
+          "colorB": {
+            "kind": "color",
+            "value": [
+              0.35,
+              0.38,
+              0.45,
+              1
+            ]
+          },
+          "colorC": {
+            "kind": "color",
+            "value": [
+              0.95,
+              0.97,
+              1,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 820,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_grade",
+        "inputs": {
+          "color": {
+            "node": "n_ramp",
+            "port": "color"
+          }
+        },
+        "kind": "grade",
+        "note": "低饱和度 + 冷色 tint 是\"金属\"而非\"彩色塑料\"的关键。",
+        "params": {
+          "contrast": {
+            "group": "调色",
+            "kind": "param",
+            "label": "对比度",
+            "max": 3,
+            "min": 0.5,
+            "name": "u_contrast",
+            "step": 0.01,
+            "type": "float",
+            "value": 1.35
+          },
+          "exposure": {
+            "kind": "float",
+            "max": 3,
+            "min": 0.2,
+            "step": 0.01,
+            "value": 1
+          },
+          "gamma": {
+            "kind": "float",
+            "max": 2.4,
+            "min": 0.4,
+            "step": 0.01,
+            "value": 1
+          },
+          "saturation": {
+            "group": "调色",
+            "kind": "param",
+            "label": "饱和度",
+            "max": 2,
+            "min": 0,
+            "name": "u_saturation",
+            "step": 0.01,
+            "type": "float",
+            "value": 0.35
+          },
+          "tint": {
+            "kind": "vec3",
+            "value": [
+              0.86,
+              0.92,
+              1
+            ]
+          }
+        },
+        "pos": {
+          "x": 1100,
+          "y": 120
+        }
+      },
+      {
+        "id": "n_out",
+        "inputs": {
+          "color": {
+            "node": "n_grade",
+            "port": "color"
+          }
+        },
+        "kind": "output",
+        "pos": {
+          "x": 1380,
+          "y": 120
+        }
+      }
+    ]
+  },
+  "hash": "28d7ed5d8becaf59",
+  "id": "liquid-metal",
+  "irVersion": "1.0.0",
+  "provenance": {
+    "model": "hand-authored",
+    "steps": [
+      {
+        "actor": "human",
+        "at": "2024-01-01T00:00:00.000Z",
+        "summary": "手写参考示例：域变形驱动的金属表面"
+      }
+    ]
+  },
+  "render": {
+    "maxIterations": 6,
+    "qualityTier": "medium",
+    "referenceGpu": "集显 / 移动端 GPU",
+    "resolution": [
+      512,
+      512
+    ],
+    "targetFps": 60,
+    "transparent": false
+  },
+  "spec": {
+    "antiFeatures": [
+      "blocky 的方格状噪声",
+      "硬边的黑白条纹",
+      "明显的重复图案"
+    ],
+    "category": "procedural-surface",
+    "features": [
+      "表面有连续流动的变形，不是静态图案",
+      "存在沿流线方向的细密拉丝纹理",
+      "有明暗过渡的高光带，金属质感",
+      "整体色调偏冷，可在 ±0.5 色相范围内调整",
+      "无可见的平铺接缝或网格状重复"
+    ],
+    "intent": "流动的液态金属表面，带细腻的拉丝与高光带",
+    "outOfScope": [
+      "不产生凹凸/法线信息，输出是纯 2D 颜色，不能直接驱动 3D 光照",
+      "不含环境反射；要做真实反射需要额外的 cubemap 输入通道"
+    ],
+    "tags": [
+      "金属",
+      "流体",
+      "噪声",
+      "程序化",
+      "无缝"
+    ]
+  },
+  "stage": "fragment",
+  "targetNotes": {
+    "msl": "在非 macOS 环境无法本地编译验证，已通过 SPIR-V 交叉检查。",
+    "shaderlab": "Unity 没有全局鼠标位置，`iMouse` 映射为显式 uniform `_MousePos`，需要在脚本里手动写入。",
+    "ue": "UE 的 Custom 节点不能声明任意 uniform，全部 9 个参数会变成节点输入引脚；`iMouse` 在材质里没有等价物，已移除。"
+  },
+  "targets": [
+    "glsl",
+    "wgsl",
+    "hlsl",
+    "msl",
+    "shaderlab",
+    "ue"
+  ],
+  "title": "液态金属"
+}

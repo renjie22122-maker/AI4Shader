@@ -1,0 +1,32 @@
+{
+  "name": "ai4shader",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI 驱动的工作流：从描述/参考图自动生成多格式 shader，并支持实时预览与连续微调",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "setup": "node scripts/setup-links.mjs",
+    "build": "node scripts/project-ts.ts",
+    "check:imports": "node scripts/check-imports.mjs",
+    "check:served": "node scripts/check-served.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check": "npm run build && npm run check:imports && npm run check:served && npm test",
+    "test": "node scripts/run-tests.mjs",
+    "test:isolated": "node scripts/run-tests.mjs --isolated",
+    "build:demo": "node scripts/build-demo.ts",
+    "serve": "node scripts/serve.mjs",
+    "verify": "node scripts/verify-shaders.mjs",
+    "cli": "node apps/cli/dist/cli.js",
+    "emit:demo": "node apps/cli/dist/cli.js emit examples/liquid-metal.shader.json --target all --out dist/demo --force",
+    "validate:demo": "node apps/cli/dist/cli.js validate examples/liquid-metal.shader.json",
+    "dev": "npm run dev --workspace @ai4shader/web"
+  }
+}
